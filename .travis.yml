@@ -16,3 +16,9 @@ install:
   - sudo apt-get install ci-scripts --force-yes
   - openssl aes-256-cbc -K $encrypted_1aed0c548b60_key -iv $encrypted_1aed0c548b60_iv -in ./mere-mortals-c20b5bc3122a.json.enc -out ./mere-mortals-c20b5bc3122a.json -d
   - /opt/mere-mortals/swampup/setup-gcp.sh ./mere-mortals-c20b5bc3122a.json mere-mortals us-central1-a
+
+script:
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+      echo -e "Conducting a rolling update for Crispy Barnacle...\n\n";
+      sudo ${HOME}/google-cloud-sdk/bin/kubectl apply -f ./deployment.yaml;
+    fi
