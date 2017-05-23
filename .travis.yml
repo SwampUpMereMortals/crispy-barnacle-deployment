@@ -6,6 +6,7 @@ branches:
     - dev
 
 before_install:
+  - export CLOUDSDK_CORE_DISABLE_PROMPTS=1
   - git config --global user.email "mere.mortal.ci@gmail.com"
   - git config --global user.name "Mere Mortal CI"
   - sudo su -c "echo -e \"deb https://${ARTIFACTORY_USER}:${ARTIFACTORY_PASS}@meremortal.jfrog.io/meremortal/mortal-debian precise main\n\" >> /etc/apt/sources.list"
@@ -13,4 +14,5 @@ before_install:
 
 install:
   - sudo apt-get install ci-scripts --force-yes
-  - openssl enc -d -aes-256-cbc -in ./mere-mortals-c20b5bc3122a.json.enc -out ./mere-mortals-c20b5bc3122a.json < echo "${encrypted_key_in}"
+  - openssl aes-256-cbc -K $encrypted_1aed0c548b60_key -iv $encrypted_1aed0c548b60_iv -in mere-mortals-c20b5bc3122a.json.enc -out ~/mere-mortals-c20b5bc3122a.json -d
+  - /opt/mere-mortals/swampup/setup-gcp.sh ./mere-mortals-c20b5bc3122a.json mere-mortals us-central1-a
