@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: crispy-barnacle
-          image: 'meremortal-mortal-docker.jfrog.io/crispy-barnacle:1.2.3'
+          image: 'crispy-barnacle:1.2.4'
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
