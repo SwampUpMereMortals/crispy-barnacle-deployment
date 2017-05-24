@@ -8,3 +8,4 @@ Kubernetes Deployment repo for the one and only famous crispy
 barnacle.  This contains the configuration(s) (for multiple
 environments, you would have multiple branches, `qa`, `prod`, etc) for
 a full rolling update kuberentes deployment.
+
